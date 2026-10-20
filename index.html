@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Salva y Silvia se casan el 21 de agosto de 2027 en el Monasterio de Lupiana.">
-<meta property="og:title" content="Salva &amp; Silvia · 21.08.2027">
+<meta name="description" content="Silvia y Salva se casan el 21 de agosto de 2027 en el Monasterio de Lupiana.">
+<meta property="og:title" content="Silvia &amp; Salva · 21.08.2027">
 <meta property="og:description" content="¿Tienes ganas de venir a nuestra boda?">
-<title>Invitación Salva y Silvia</title>
+<title>Invitación Silvia y Salva</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,14 +106,28 @@ p{margin:0 0 14px;}
 
 /* Paso 0: la pregunta */
 .names{font-family:var(--f-script);font-size:clamp(1.8rem,7vw,2.3rem);margin:0 0 18px;line-height:1.1;}
-.choices{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px;min-height:150px;margin-top:6px;}
+.choices{display:flex;align-items:center;justify-content:center;min-height:130px;margin-top:10px;}
 .btn{border:1px solid var(--gold);background:transparent;padding:.7em 1.8em;border-radius:999px;cursor:pointer;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;font-weight:400;transition:background .25s,color .25s,transform .25s;}
 .btn:hover{background:var(--gold);color:var(--paper);}
 .btn-primary{background:var(--wax);border-color:var(--wax);color:var(--paper);}
 .btn-primary:hover{background:var(--ink);border-color:var(--ink);}
-#btnSi{font-size:calc(.85rem * var(--grow,1));padding:.75em calc(2em * min(var(--grow,1),1.6));transition:font-size .35s cubic-bezier(.3,1.6,.5,1),padding .35s,background .25s;box-shadow:0 8px 22px -10px rgba(142,42,42,.7);}
-#btnNo{font-size:calc(.85rem * var(--shrink,1));transition:font-size .3s ease,opacity .3s ease,transform .3s ease;border-color:var(--stone);color:var(--stone);text-transform:none;letter-spacing:.04em;white-space:nowrap;}
-#btnNo:hover{background:transparent;color:var(--stone);}
+.choices{flex-direction:column;gap:12px;}
+.slider{--w:min(300px,78vw);--k:56px;position:relative;width:var(--w);height:calc(var(--k) + 10px);border-radius:999px;background:var(--field);border:1px solid var(--line);touch-action:none;user-select:none;-webkit-user-select:none;cursor:pointer;}
+.slider .s-no,.slider .s-yes{position:absolute;top:50%;transform:translateY(-50%);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;transition:opacity .4s,transform .4s;pointer-events:none;}
+.s-no{left:22px;color:var(--stone);}
+.s-yes{right:24px;color:var(--wax);font-weight:400;}
+.s-hint{position:absolute;top:50%;left:calc(50% + var(--k) / 2 + 10px);transform:translateY(-50%);color:var(--gold);letter-spacing:.1em;font-size:1rem;animation:nudge 1.6s ease-in-out infinite;pointer-events:none;}
+@keyframes nudge{0%,100%{opacity:.3;transform:translate(0,-50%)}50%{opacity:1;transform:translate(6px,-50%)}}
+.slider.moved .s-hint{display:none;}
+.knob{position:absolute;top:4px;left:calc((var(--w) - var(--k)) / 2);width:var(--k);height:var(--k);border-radius:50%;border:0;padding:0;cursor:grab;touch-action:none;
+  background:radial-gradient(circle at 36% 30%,#AE403B 0,#8E2A2A 45%,#6E1E1E 100%);box-shadow:inset 0 0 0 4px rgba(0,0,0,.13),0 6px 14px -6px rgba(110,30,30,.8);
+  color:#EFD3C2;font-family:var(--f-script);font-size:1.3rem;display:flex;align-items:center;justify-content:center;transform:translateX(var(--dx,0px));will-change:transform;}
+.knob:active{cursor:grabbing;}
+.knob.spring{transition:transform .5s cubic-bezier(.3,1.5,.5,1);}
+.knob.shake{animation:shake .45s ease;}
+@keyframes shake{0%,100%{rotate:0deg}25%{rotate:-12deg}75%{rotate:12deg}}
+.mono{font-style:normal;line-height:1;display:block;white-space:nowrap;transform:translate(var(--ix,0px),var(--iy,0px));}
+.s-help{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);margin:0;}
 .taunt{min-height:1.6em;font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:var(--gold);margin:12px 0 0;}
 
 /* Fecha */
@@ -210,7 +224,7 @@ textarea{resize:vertical;min-height:70px;}
   .slide{padding-block:70px 108px;}
   .sprig{width:42px;height:64px;}
 }
-@media (max-height:640px){.choices{min-height:110px;}}
+@media (max-height:640px){.choices{min-height:100px;}}
 
 /* ===== v3 · Móvil a pantalla completa (revertir: borrar este bloque y el zoom del script) ===== */
 .scene .env{transition:transform .45s cubic-bezier(.5,0,.75,0),opacity .45s ease;}
@@ -239,8 +253,8 @@ textarea{resize:vertical;min-height:70px;}
 }
 @keyframes zoomIn{from{transform:scale(.82);opacity:0}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){
-  .slide,#btnSi,#btnNo,.menu,.menu-panel,.sky,.orb,.stars,.flap,.letter,.half{transition:none!important;}
-  .seal::after,.qcard{animation:none!important;}
+  .slide,.knob,.menu,.menu-panel,.sky,.orb,.stars,.flap,.letter,.half{transition:none!important;}
+  .seal::after,.qcard,.s-hint,.knob.shake{animation:none!important;}
   .scene .env{transition:none!important;}
 }
 </style>
@@ -249,7 +263,7 @@ textarea{resize:vertical;min-height:70px;}
 </head>
 <body>
 <button class="menu-btn" id="menuBtn" type="button" aria-label="Índice de la invitación" aria-expanded="false" aria-controls="menu" hidden><span></span><span></span><span></span></button>
-<div class="menu" id="menu" hidden><nav class="menu-panel" aria-label="Índice"><p>Ir a…</p><ol id="menuList"></ol><p class="legal">Diseño registrado. Cualquier copia para otra boda se resolverá en la pista de baile. <b>· v4 · 20/10/2026</b></p></nav></div>
+<div class="menu" id="menu" hidden><nav class="menu-panel" aria-label="Índice"><p>Ir a…</p><ol id="menuList"></ol><p class="legal">Diseño registrado. Cualquier copia para otra boda se resolverá en la pista de baile. <b>· v8 · 20/10/2026</b></p></nav></div>
 
 <div class="sky" id="sky" aria-hidden="true"><div class="stars" id="stars"></div><div class="orb sun" id="sun"></div><div class="orb moon" id="moon"></div></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -267,23 +281,28 @@ textarea{resize:vertical;min-height:70px;}
   <section class="slide is-active" data-step="0" data-label="Inicio" aria-label="Invitación">
     <div class="scene" id="scene">
       <p class="eyebrow">Para ti, de parte de</p>
-      <p class="script">Salva y Silvia</p>
+      <p class="script">Silvia y Salva</p>
       <div class="env" id="env">
         <div class="env-back"></div>
         <div class="letter" aria-hidden="true">21 · 08 · 2027</div>
         <div class="env-front"><svg viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true"><path d="M0 200 L128 108 M300 200 L172 108" stroke="#E0D4BE" stroke-width="1.2" fill="none" vector-effect="non-scaling-stroke"/></svg></div>
         <div class="flap"></div>
-        <button class="seal" id="seal" type="button" aria-label="Romper el sello y abrir la invitación"><span class="half l">S&amp;S</span><span class="half r">S&amp;S</span></button>
+        <button class="seal" id="seal" type="button" aria-label="Romper el sello y abrir la invitación"><span class="half l"><i class="mono">S&amp;S</i></span><span class="half r"><i class="mono">S&amp;S</i></span></button>
       </div>
       <p class="hint">Rompe el sello para abrir</p>
     </div>
     <div class="card qcard" id="qcard" hidden>
       <p class="eyebrow">21 · 08 · 2027</p>
-      <p class="names">Salva <span class="amp">&amp;</span> Silvia</p>
+      <p class="names">Silvia <span class="amp">&amp;</span> Salva</p>
       <h1>¿Tienes ganas de venir a nuestra boda?</h1>
       <div class="choices">
-        <button class="btn btn-primary" id="btnSi" type="button">Sí, claro</button>
-        <button class="btn" id="btnNo" type="button">No</button>
+        <div class="slider" id="slider">
+          <span class="s-no" id="sNo">No</span>
+          <span class="s-yes">Sí</span>
+          <span class="s-hint" aria-hidden="true">&#8250;&#8250;&#8250;</span>
+          <button class="knob" id="knob" type="button" role="slider" aria-label="Desliza a la derecha para decir que sí" aria-valuemin="0" aria-valuemax="2" aria-valuenow="1" aria-valuetext="Sin responder"><i class="mono">S&amp;S</i></button>
+        </div>
+        <p class="s-help">Desliza el lacre hacia tu respuesta</p>
       </div>
       <p class="taunt" id="taunt" aria-live="polite"></p>
     </div>
@@ -294,7 +313,7 @@ textarea{resize:vertical;min-height:70px;}
     <div class="card">
       <svg class="sprig" aria-hidden="true"><use href="#sprig"/></svg>
       <p class="eyebrow">Nos casamos</p>
-      <h2 class="script" style="font-size:clamp(2.4rem,10vw,3.4rem);font-weight:400">Salva <span class="amp">&amp;</span> Silvia</h2>
+      <h2 class="script" style="font-size:clamp(2.4rem,10vw,3.4rem);font-weight:400">Silvia <span class="amp">&amp;</span> Salva</h2>
       <div class="date-row"><span>Sábado</span><div class="date-big">21</div><span>Agosto</span></div>
       <p class="muted" style="letter-spacing:.3em">2027</p>
       <hr class="rule">
@@ -386,7 +405,7 @@ textarea{resize:vertical;min-height:70px;}
         <code id="iban">ES00 0000 0000 0000 0000 0000</code>
         <button class="btn" type="button" id="copyIban">Copiar</button>
       </div>
-      <p class="muted" id="copyMsg" aria-live="polite">Titulares: Salvador Gaitán y Silvia Rodríguez</p>
+      <p class="muted" id="copyMsg" aria-live="polite">Titulares: Silvia Rodríguez y Salvador Gaitán</p>
     </div>
   </section>
 
@@ -479,13 +498,13 @@ textarea{resize:vertical;min-height:70px;}
 
 <script>
 /* ===== CONFIGURACIÓN: edita aquí ===== */
-const VERSION = "v4 · 20/10/2026";
+const VERSION = "v8 · 20/10/2026";
 const CONFIG = {
   // URL de la implementación de Google Apps Script (termina en /exec). Vacío = modo vista previa.
   scriptURL: "",
   weddingStart: "2027-08-21T17:00:00+02:00",
   calendar: {
-    title: "Boda de Salva y Silvia",
+    title: "Boda de Silvia y Salva",
     start: "20270821T150000Z", end: "20270822T010000Z",
     location: "Monasterio de San Bartolomé de Lupiana, Lupiana, Guadalajara",
     details: "Ceremonia a las 17:00. Info: invitación online."
@@ -530,7 +549,9 @@ slides.slice(1).forEach((s,i)=>{
 
 function go(n){
   if(n<0||n>=slides.length)return;
+  /* La portada (sobre + respuesta) solo se supera respondiendo, y no se vuelve a ella */
   if(n>0&&!unlocked)return;
+  if(n===0&&current!==0)return;
   slides.forEach((s,i)=>{s.classList.toggle('is-active',i===n);s.classList.toggle('is-past',i<n);s.setAttribute('aria-hidden',i!==n);});
   current=n;
   slides[n].scrollTop=0;paintSky(n);
@@ -566,34 +587,36 @@ document.getElementById('deck').addEventListener('touchend',e=>{
   if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)go(current+(dx<0?1:-1));
 },{passive:true});
 
-/* ===== Botones Sí / No ===== */
-const si=document.getElementById('btnSi'),no=document.getElementById('btnNo'),taunt=document.getElementById('taunt');
-const noTexts=["No","¿Seguro?","Piénsalo bien","Hay jamón ibérico","Y 4 horas de barra libre","En un monasterio…","Última oportunidad"];
-const taunts=["","Ese botón no funciona muy bien.","Cada vez es más pequeño, ¿lo ves?","El jamón va al corte.","Barra libre, ¿eh?","Vas a acabar diciendo que sí.","Ya casi no lo ves."];
-let tries=0,lastTry=0;
-function dodge(e){
-  if(e){e.preventDefault();}
-  const now=Date.now();if(now-lastTry<250)return;lastTry=now;
-  tries++;
-  const shrink=Math.max(0.35,1-tries*0.11);
-  const grow=Math.min(2.6,1+tries*0.28);
-  no.style.setProperty('--shrink',shrink);
-  si.style.setProperty('--grow',grow);
-  no.textContent=noTexts[Math.min(tries,noTexts.length-1)];
+/* ===== Interruptor Sí / No (deslizar el lacre) ===== */
+const slider=document.getElementById('slider'),knob=document.getElementById('knob'),sNo=document.getElementById('sNo'),taunt=document.getElementById('taunt');
+const taunts=["","¿Seguro? Prueba otra vez.","Piénsalo bien.","Hay jamón ibérico al corte.","Y 4 horas de barra libre.","En un monasterio, nada menos.","El No ya casi ni se ve."];
+let tries=0,answered=false,dragging=false,startX=0,startDx=0,dx=0;
+const range=()=>(slider.clientWidth-knob.offsetWidth)/2-4;
+function setDx(v,spring){knob.classList.toggle('spring',!!spring);dx=v;knob.style.setProperty('--dx',v+'px');}
+function sayNo(){
+  tries++;slider.classList.add('moved');
   taunt.textContent=taunts[Math.min(tries,taunts.length-1)];
-  if(tries>=noTexts.length){no.style.opacity='0';no.style.transform='scale(.2)';setTimeout(()=>{no.hidden=true;taunt.textContent='Pues nada, solo queda una opción.';},300);}
+  sNo.style.opacity=Math.max(0,1-tries*.18);sNo.style.transform='translateY(-50%) scale('+Math.max(.5,1-tries*.1)+')';
+  knob.classList.remove('shake');void knob.offsetWidth;knob.classList.add('shake');
+  setDx(0,true);knob.setAttribute('aria-valuetext','Sin responder');
 }
-/* Táctil: touchstart con preventDefault anula el clic sintético, que tras el redimensionado caía sobre «Sí» */
-no.addEventListener('touchstart',e=>{e.preventDefault();dodge();},{passive:false});
-no.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')dodge();});
-no.addEventListener('click',dodge);
-/* «Sí» solo cuenta si el toque empezó sobre él y no justo después de esquivar el «No» */
-let siDown=false;
-si.addEventListener('pointerdown',()=>{siDown=Date.now()-lastTry>500;});
-si.addEventListener('click',e=>{
-  if(e.detail!==0&&(!siDown||Date.now()-lastTry<500)){siDown=false;return;}
-  siDown=false;unlocked=true;store.set('boda_unlocked','1');burst();setTimeout(()=>go(1),reduce?0:450);});
-if(store.get('boda_unlocked')==='1'){unlocked=true;}
+function sayYes(){
+  if(answered)return;answered=true;slider.classList.add('moved');
+  setDx(range(),true);knob.setAttribute('aria-valuenow','2');knob.setAttribute('aria-valuetext','Sí');
+  taunt.textContent='¡Sabíamos que dirías que sí!';
+  unlocked=true;
+  setTimeout(()=>{burst(knob);setTimeout(()=>go(1),reduce?0:650);},reduce?0:300);
+}
+knob.addEventListener('pointerdown',e=>{if(answered)return;dragging=true;startX=e.clientX;startDx=dx;knob.setPointerCapture(e.pointerId);knob.classList.remove('spring');e.preventDefault();});
+knob.addEventListener('pointermove',e=>{if(!dragging)return;const r=range();setDx(Math.max(-r,Math.min(r,startDx+e.clientX-startX)));if(Math.abs(dx)>6)slider.classList.add('moved');});
+const release=()=>{if(!dragging)return;dragging=false;const r=range();
+  if(dx>r*.7)sayYes();else if(dx<-r*.7)sayNo();else setDx(0,true);};
+knob.addEventListener('pointerup',release);knob.addEventListener('pointercancel',release);
+/* Tocar un lado del carril también responde */
+slider.addEventListener('click',e=>{if(answered||e.target.closest('.knob'))return;const b=slider.getBoundingClientRect();
+  if(e.clientX>b.left+b.width/2)sayYes();else{setDx(-range(),true);setTimeout(sayNo,320);}});
+knob.addEventListener('keydown',e=>{if(answered)return;if(e.key==='ArrowRight'||e.key==='Enter'){e.preventDefault();sayYes();}else if(e.key==='ArrowLeft'){e.preventDefault();sayNo();}});
+
 
 /* Pie legal y versión: en todas las tarjetas desde el paso 1 */
 const legalTpl=document.querySelector('.menu-panel .legal');
@@ -603,13 +626,31 @@ const navEl=document.getElementById('nav');
 const setNavH=()=>{const h=navEl.offsetHeight;if(h)document.documentElement.style.setProperty('--nav-h',h+'px');};
 try{new ResizeObserver(setNavH).observe(navEl);}catch(e){addEventListener('resize',setNavH);}
 
+/* Centrado óptico del monograma: la caligráfica tiene métricas asimétricas, así que se mide la tinta real y se compensa */
+function centerInk(){
+  const cv=document.createElement('canvas').getContext('2d');
+  document.querySelectorAll('.mono').forEach(el=>{
+    const cs=getComputedStyle(el),size=parseFloat(cs.fontSize);
+    cv.font=cs.fontStyle+' '+cs.fontWeight+' '+size+'px '+cs.fontFamily;
+    const m=cv.measureText(el.textContent);
+    if(!m.actualBoundingBoxAscent&&!m.fontBoundingBoxAscent)return;
+    const ix=m.width/2-(m.actualBoundingBoxRight-m.actualBoundingBoxLeft)/2;
+    const A=m.fontBoundingBoxAscent||size*.8,D=m.fontBoundingBoxDescent||size*.2;
+    const baseline=(size-(A+D))/2+A;
+    const inkMid=baseline-(m.actualBoundingBoxAscent-m.actualBoundingBoxDescent)/2;
+    el.style.setProperty('--ix',ix.toFixed(1)+'px');el.style.setProperty('--iy',(size/2-inkMid).toFixed(1)+'px');
+  });
+}
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(centerInk);
+addEventListener('resize',centerInk);
+
 /* ===== Sobre y lacre ===== */
 const isMobile=()=>matchMedia('(max-width: 640px)').matches;
 const seal=document.getElementById('seal'),scene=document.getElementById('scene'),qcard=document.getElementById('qcard');
 seal.addEventListener('click',()=>{
   if(scene.classList.contains('opening'))return;
   scene.classList.add('opening');
-  const reveal=()=>{scene.hidden=true;slides[0].classList.add('revealed');qcard.hidden=false;si.focus({preventScroll:true});};
+  const reveal=()=>{scene.hidden=true;slides[0].classList.add('revealed');qcard.hidden=false;knob.focus({preventScroll:true});};
   if(reduce){reveal();return;}
   /* v3 · móvil: la carta hace zoom y ocupa toda la pantalla */
   setTimeout(()=>{if(isMobile()){scene.classList.add('zoom');setTimeout(reveal,450);}else reveal();},1500);
@@ -619,9 +660,9 @@ seal.addEventListener('click',()=>{
 const cv=document.getElementById('petals'),cx=cv.getContext('2d');let parts=[],raf=0;
 function size(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;}
 addEventListener('resize',size);size();
-function burst(){
+function burst(el){
   if(reduce)return;
-  const r=si.getBoundingClientRect(),ox=(r.left+r.width/2)*devicePixelRatio,oy=(r.top+r.height/2)*devicePixelRatio;
+  const r=el.getBoundingClientRect(),ox=(r.left+r.width/2)*devicePixelRatio,oy=(r.top+r.height/2)*devicePixelRatio;
   const cols=['#9C83BE','#B79AD1','#A8843F','#E8D9B5'];
   for(let i=0;i<70;i++){const a=Math.random()*Math.PI*2,v=(3+Math.random()*7)*devicePixelRatio;
     parts.push({x:ox,y:oy,vx:Math.cos(a)*v,vy:Math.sin(a)*v-4*devicePixelRatio,r:(4+Math.random()*5)*devicePixelRatio,rot:Math.random()*6,vr:(Math.random()-.5)*.3,c:cols[i%4],life:1});}
