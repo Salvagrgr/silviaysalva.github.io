@@ -31,7 +31,7 @@
   --f-body:"Jost","Helvetica Neue",Arial,sans-serif;
   color-scheme:light;
 }
-html,body{height:100%;}
+html,body{height:100%;overscroll-behavior:none;}
 body{background:var(--linen);color:var(--ink);font-family:var(--f-body);font-weight:300;font-size:16px;line-height:1.6;overflow:hidden;-webkit-font-smoothing:antialiased;}
 *{box-sizing:border-box;}
 button,input,select,textarea{font:inherit;color:inherit;}
@@ -49,7 +49,7 @@ button,input,select,textarea{font:inherit;color:inherit;}
 .orb.on{opacity:1;}
 
 .deck{position:relative;height:100%;width:100%;overflow:hidden;z-index:1;}
-.slide{position:absolute;inset:0;display:flex;justify-content:center;overflow-y:auto;-webkit-overflow-scrolling:touch;
+.slide{position:absolute;inset:0;display:flex;justify-content:center;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:74px 118px;
   transition:transform .75s cubic-bezier(.6,0,.25,1),opacity .6s ease;opacity:0;transform:translateX(40%) rotate(5deg);pointer-events:none;visibility:hidden;}
 .slide.is-active{opacity:1;transform:none;pointer-events:auto;visibility:visible;will-change:transform,opacity;}
@@ -243,7 +243,7 @@ textarea{resize:vertical;min-height:70px;}
   .card>.legal-gap{margin-top:auto;}
   .slide:not([data-step="0"]){padding-bottom:0;}
   .card{box-shadow:none;}
-  .card::before{top:var(--band);bottom:-8px;left:-8px;right:-8px;}
+  .card::before{top:var(--band);bottom:0;left:0;right:0;}
   .card::after{top:calc(var(--band) + 12px);}
   .qcard{animation:zoomIn .55s cubic-bezier(.2,.7,.3,1) both;display:flex;flex-direction:column;justify-content:center;}
   .sprig{top:calc(var(--band) - 46px);bottom:auto;right:auto;left:16px;}
@@ -267,7 +267,7 @@ textarea{resize:vertical;min-height:70px;}
 </head>
 <body>
 <button class="menu-btn" id="menuBtn" type="button" aria-label="Índice de la invitación" aria-expanded="false" aria-controls="menu" hidden><span></span><span></span><span></span></button>
-<div class="menu" id="menu" hidden><nav class="menu-panel" aria-label="Índice"><p>Ir a…</p><ol id="menuList"></ol><p class="legal">Diseño registrado. Cualquier copia para otra boda se resolverá en la pista de baile. <b>· v10 · 20/10/2026</b></p></nav></div>
+<div class="menu" id="menu" hidden><nav class="menu-panel" aria-label="Índice"><p>Ir a…</p><ol id="menuList"></ol><p class="legal">Diseño registrado. Cualquier copia para otra boda se resolverá en la pista de baile. <b>· v11 · 20/10/2026</b></p></nav></div>
 
 <div class="sky" id="sky" aria-hidden="true"><div class="stars" id="stars"></div><div class="orb sun" id="sun"></div><div class="orb moon" id="moon"></div></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -501,7 +501,7 @@ textarea{resize:vertical;min-height:70px;}
 
 <script>
 /* ===== CONFIGURACIÓN: edita aquí ===== */
-const VERSION = "v10 · 20/10/2026";
+const VERSION = "v11 · 20/10/2026";
 const CONFIG = {
   // URL de la implementación de Google Apps Script (termina en /exec). Vacío = modo vista previa.
   scriptURL: "",
