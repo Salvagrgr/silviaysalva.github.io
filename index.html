@@ -202,7 +202,31 @@ textarea{resize:vertical;min-height:70px;}
 .dots button[aria-current="true"]{opacity:1;height:14px;border-radius:3px;box-shadow:0 0 0 2px var(--paper),0 0 0 3px var(--ink);position:relative;z-index:1;}
 .steplabel{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);text-align:center;}
 
+
+/* Widget de temperatura */
+.temp{margin:22px auto 6px;max-width:400px;background:var(--field);border:1px solid var(--line);border-radius:6px;padding:16px 16px 12px;display:flex;flex-direction:column;gap:12px;text-align:left;}
+.temp-title{font-family:var(--f-display);font-weight:600;font-size:1.2rem;margin:0;}
+.temp-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.temp-chips button{font-size:.78rem;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--paper);cursor:pointer;}
+.temp-chips button[aria-selected="true"]{background:#8FA28A;border-color:#8FA28A;color:var(--paper);}
+.temp-body{display:flex;align-items:center;gap:16px;}
+.thermo rect#thFill,.thermo circle{transition:y .5s ease,height .5s ease,fill .5s ease;}
+.temp-when{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin:0;}
+.temp-val{font-family:var(--f-display);font-size:2.4rem;line-height:1.05;margin:2px 0 0;font-variant-numeric:tabular-nums;}
+.temp-note{font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:var(--stone);margin:0;}
+.temp-src{font-size:.68rem;color:var(--stone);margin:0;opacity:.8;}
 .legal-gap{flex:none;height:26px;}
+.tl-link{display:inline-block;margin-top:4px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--wax);text-decoration:none;border-bottom:1px solid currentColor;}
+.places{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:26px;}
+.place{display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:16px;border-top:1px solid var(--line);}
+.place h3{font-family:var(--f-display);font-weight:600;font-size:1.25rem;margin:0;}
+.place .eyebrow{margin:0;}
+.place .muted{margin:0 0 8px;}
+.strong{font-weight:500;color:var(--ink);}
+.copy-msg:empty{display:none;}
+.seg.three{grid-template-columns:repeat(3,1fr);}
+.seg.three label{font-size:.85rem;padding:10px 4px;}
+.lbl-note{text-transform:none;letter-spacing:0;font-size:.78rem;}
 .slide:not([data-step="0"]){padding-bottom:calc(var(--nav-h,96px) + 22px);}
 .legal{font-size:.66rem;line-height:1.5;color:var(--stone);letter-spacing:.02em;margin:0 auto;padding-top:14px;border-top:1px solid var(--line);max-width:34ch;text-align:center;}
 .legal b{font-weight:400;letter-spacing:.12em;white-space:nowrap;}
@@ -225,6 +249,8 @@ textarea{resize:vertical;min-height:70px;}
 .menu-panel button{width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:14px 0;cursor:pointer;display:flex;gap:14px;align-items:center;font-size:1rem;}
 .menu-panel button i{width:12px;height:12px;border-radius:50%;flex:none;border:1px solid rgba(0,0,0,.12);}
 .menu-panel button[aria-current="true"]{color:var(--wax);}
+
+
 
 
 /* ===== Easter eggs ===== */
@@ -295,7 +321,7 @@ textarea{resize:vertical;min-height:70px;}
 </head>
 <body>
 <button class="menu-btn" id="menuBtn" type="button" aria-label="Índice de la invitación" aria-expanded="false" aria-controls="menu" hidden><span></span><span></span><span></span></button>
-<div class="menu" id="menu" hidden><nav class="menu-panel" aria-label="Índice"><p>Ir a…</p><ol id="menuList"></ol><p class="legal">Diseño registrado. Cualquier copia para otra boda se resolverá en la pista de baile. <b>· v23 · 20/10/2026</b></p></nav></div>
+<div class="menu" id="menu" hidden><nav class="menu-panel" aria-label="Índice"><p>Ir a…</p><ol id="menuList"></ol><p class="legal">Diseño registrado. Cualquier copia para otra boda se resolverá en la pista de baile. <b>· v26 · 20/10/2026</b></p></nav></div>
 
 <div class="sky" id="sky" aria-hidden="true"><div class="stars" id="stars"></div><div class="orb sun" id="sun"></div><div class="orb moon" id="moon"></div></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -369,10 +395,10 @@ textarea{resize:vertical;min-height:70px;}
       <p class="eyebrow">El día</p>
       <h2>Programa</h2>
       <ol class="timeline">
-        <li><time>17:00</time><div><strong>Ceremonia</strong><span>En el monasterio. Os rogamos llegar 20 minutos antes.</span></div></li>
-        <li><time>18:00</time><div><strong>Cóctel</strong><span>En el claustro, con jamón ibérico al corte.</span></div></li>
-        <li><time>20:30</time><div><strong>Cena</strong><span>Banquete en los jardines.</span></div></li>
-        <li><time>23:00</time><div><strong>Fiesta</strong><span>Primer baile y barra libre.</span></div></li>
+        <li><time>17:00</time><div><strong>Ceremonia</strong><span>En la Iglesia de San Pedro Apóstol de Lupiana. Os rogamos llegar 20 minutos antes.</span><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Iglesia+de+San+Pedro+Ap%C3%B3stol%2C+Lupiana%2C+Guadalajara" target="_blank" rel="noopener">Ver en Google Maps</a></div></li>
+        <li><time>18:00</time><div><strong>Cóctel</strong><span>En los jardines del monasterio, con jamón ibérico al corte.</span></div></li>
+        <li><time>20:30</time><div><strong>Cena</strong><span>Banquete en el claustro.</span></div></li>
+        <li><time>23:00</time><div><strong>Fiesta</strong><span>En la antigua capilla: primer baile y barra libre.</span></div></li>
         <li><time>03:00</time><div><strong>Vuelta</strong><span>Salida del autobús hacia Madrid.</span></div></li>
       </ol>
     </div>
@@ -389,8 +415,9 @@ textarea{resize:vertical;min-height:70px;}
         <div><h3>Autobús desde Madrid</h3><p>Pondremos autobús de ida y vuelta. Indícanos en la confirmación si lo vas a usar para reservar las plazas justas.</p></div>
         <div><h3>Taxi</h3><p>Guadalajara está a 15 minutos. Recomendamos reservar el taxi de vuelta con antelación.</p></div>
       </div>
-      <div class="links" style="margin-top:22px">
-        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Monasterio+de+San+Bartolom%C3%A9+de+Lupiana" target="_blank" rel="noopener">Abrir en Google Maps</a>
+      <div class="places">
+        <div class="place"><p class="eyebrow">Ceremonia · 17:00</p><h3>Iglesia de San Pedro Apóstol</h3><p class="muted">Lupiana, Guadalajara</p><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Iglesia+de+San+Pedro+Ap%C3%B3stol%2C+Lupiana%2C+Guadalajara" target="_blank" rel="noopener">Abrir en Google Maps</a></div>
+        <div class="place"><p class="eyebrow">Celebración · desde las 18:00</p><h3>Monasterio de San Bartolomé</h3><p class="muted">Lupiana, Guadalajara</p><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Monasterio+de+San+Bartolom%C3%A9%2C+Lupiana%2C+Guadalajara" target="_blank" rel="noopener">Abrir en Google Maps</a></div>
       </div>
     </div>
   </section>
@@ -419,9 +446,18 @@ textarea{resize:vertical;min-height:70px;}
       <p class="lead">Formal de verano.</p>
       <div class="palette"><i style="background:#C9A96E"></i><i style="background:#A3B18A"></i><i style="background:#D8B4A0"></i><i style="background:#8FA6B8"></i><button type="button" class="white-dot" id="whiteDot" aria-label="Blanco"></button></div>
       <p class="muted">Tonos tierra, salvia y pastel. Reservamos el blanco y el marfil para la novia.</p>
+      <div class="temp" id="temp">
+        <p class="temp-title">¿Qué temperatura hará?</p>
+        <div class="temp-chips" id="tempChips" role="tablist" aria-label="Momento de la boda"></div>
+        <div class="temp-body">
+          <svg class="thermo" width="26" height="96" viewBox="0 0 26 96" aria-hidden="true"><rect x="9" y="4" width="8" height="74" rx="4" fill="#EDE5D6"/><rect id="thFill" x="9" y="40" width="8" height="38" rx="4"/><circle id="thBulb" cx="13" cy="84" r="10"/></svg>
+          <div class="temp-read"><p class="temp-when" id="tempWhen"></p><p class="temp-val" id="tempVal"></p></div>
+        </div>
+        <p class="temp-note" id="tempNote" aria-live="polite"></p>
+        <p class="temp-src">Medias de agosto en Guadalajara, orientativas.</p>
+      </div>
       <div class="info" style="margin-top:18px">
-        <div><h3>El suelo</h3><p>Claustro de piedra y césped en los jardines. Mejor tacón ancho o calzado de repuesto.</p></div>
-        <div><h3>El calor</h3><p>En agosto en la Alcarria hace calor de día y refresca de noche. Un chal o una chaqueta ligera vendrán bien.</p></div>
+        <div><h3>El suelo</h3><p>Los jardines tienen suelo de piedra. Mejor tacón ancho y, en cualquier caso, unos zapatos cómodos de repuesto.</p></div>
       </div>
     </div>
   </section>
@@ -437,7 +473,8 @@ textarea{resize:vertical;min-height:70px;}
         <code id="iban">ES10 0182 5322 2102 0479 5724</code>
         <button class="btn" type="button" id="copyIban">Copiar</button>
       </div>
-      <p class="muted" id="copyMsg" aria-live="polite">Titulares: Silvia Rodríguez y Salvador Gaitán</p>
+      <p class="muted"><b class="strong">Titulares</b>: Silvia Rodríguez y Salvador Gaitán</p>
+      <p class="muted copy-msg" id="copyMsg" aria-live="polite"></p>
     </div>
   </section>
 
@@ -449,9 +486,10 @@ textarea{resize:vertical;min-height:70px;}
       <h2>Preguntas frecuentes</h2>
       <details><summary>¿Hasta cuándo puedo confirmar?</summary><p>Hasta el 1 de junio de 2027. Necesitamos el número final para el catering.</p></details>
       <details><summary>¿Puedo ir acompañado?</summary><p>Tu invitación incluye a las personas que te hayamos indicado. Si tienes dudas, escríbenos.</p></details>
-      <details><summary>Tengo alergias o una dieta especial</summary><p>Indícalo en el formulario de confirmación y lo trasladaremos al catering.</p></details>
+      <details><summary>¿Habrá opciones si tengo una dieta especial?</summary><p>Sí. En el formulario de confirmación puedes indicar tus alergias y marcar si eres vegano, celíaco o intolerante a la lactosa. Lo trasladaremos al catering.</p></details>
+      <details><summary>¿Hay aparcamiento?</summary><p>El monasterio tiene aparcamiento para invitados. En la iglesia se aparca en las calles del pueblo, así que te recomendamos llegar con tiempo.</p></details>
+      <details><summary>¿Cuánto se tarda de la iglesia al monasterio?</summary><p>Están muy cerca: el monasterio queda a algo más de 1 km del pueblo, unos 5 minutos en coche.</p></details>
       <details><summary>¿Habrá autobús?</summary><p>Sí, ida y vuelta desde Madrid. Márcalo en la confirmación para reservarte plaza.</p></details>
-      <details><summary>¿A qué hora termina?</summary><p>La fiesta se alarga hasta las 3:00, cuando sale el autobús de vuelta.</p></details>
     </div>
   </section>
 
@@ -490,6 +528,20 @@ textarea{resize:vertical;min-height:70px;}
           <label for="f-nombres">Nombre del acompañante</label>
           <input type="text" id="f-nombres" name="nombres_acompanantes">
         </div>
+        <div class="if-yes" id="wrap-menu">
+          <span class="lbl" id="lbl-menu">Tu menú</span>
+          <div class="seg" role="radiogroup" aria-labelledby="lbl-menu">
+            <input type="radio" id="f-menu-carne" name="menu" value="Carne"><label for="f-menu-carne">Carne</label>
+            <input type="radio" id="f-menu-pescado" name="menu" value="Pescado"><label for="f-menu-pescado">Pescado</label>
+          </div>
+        </div>
+        <div class="if-yes" id="wrap-menu2" hidden>
+          <span class="lbl" id="lbl-menu2">Menú de tu acompañante</span>
+          <div class="seg" role="radiogroup" aria-labelledby="lbl-menu2">
+            <input type="radio" id="f-menu2-carne" name="menu_acompanante" value="Carne"><label for="f-menu2-carne">Carne</label>
+            <input type="radio" id="f-menu2-pescado" name="menu_acompanante" value="Pescado"><label for="f-menu2-pescado">Pescado</label>
+          </div>
+        </div>
         <div class="if-yes">
           <span class="lbl" id="lbl-bus">¿Usarás el autobús desde Madrid?</span>
           <div class="seg" role="radiogroup" aria-labelledby="lbl-bus">
@@ -498,9 +550,17 @@ textarea{resize:vertical;min-height:70px;}
           </div>
         </div>
         <div class="if-yes">
-          <label for="f-alerg">Alergias o dieta especial</label>
+          <label for="f-alerg">Alergias</label>
           <input type="text" id="f-alerg" name="alergias" placeholder="Ninguna">
           <p class="egg-note" id="alergNote" aria-live="polite"></p>
+        </div>
+        <div class="if-yes">
+          <span class="lbl" id="lbl-dieta">Dieta especial <span class="lbl-note">(opcional, puedes marcar varias)</span></span>
+          <div class="seg three" role="group" aria-labelledby="lbl-dieta">
+            <input type="checkbox" id="f-d-vegano" name="dieta" value="Vegano"><label for="f-d-vegano">Vegano</label>
+            <input type="checkbox" id="f-d-celiaco" name="dieta" value="Celíaco"><label for="f-d-celiaco">Celíaco</label>
+            <input type="checkbox" id="f-d-lactosa" name="dieta" value="Intolerante a la lactosa"><label for="f-d-lactosa">Sin lactosa</label>
+          </div>
         </div>
         <div class="if-yes">
           <label for="f-cancion">Una canción que no pueda faltar</label>
@@ -549,7 +609,7 @@ textarea{resize:vertical;min-height:70px;}
 
 <script>
 /* ===== CONFIGURACIÓN: edita aquí ===== */
-const VERSION = "v23 · 20/10/2026";
+const VERSION = "v26 · 20/10/2026";
 const CONFIG = {
   // URL de la implementación de Google Apps Script (termina en /exec). Vacío = modo vista previa.
   scriptURL: "",
@@ -754,6 +814,9 @@ function syncForm(){
   const yes=form.elements.asistencia.value==='Sí';
   form.querySelectorAll('.if-yes').forEach(el=>{if(el!==wrapNombres)el.hidden=!yes;});
   wrapNombres.hidden=!yes||form.elements.acompanantes.value!=='1';
+  const vegano=document.getElementById('f-d-vegano').checked;
+  document.getElementById('wrap-menu').hidden=!yes||vegano;
+  document.getElementById('wrap-menu2').hidden=!yes||form.elements.acompanantes.value!=='1';
   const sb=document.getElementById('sendBtn');if(!sb.disabled)sb.textContent=sendLabel();
 }
 /* Egg 10: botón de envío con pena */
@@ -796,8 +859,16 @@ form.addEventListener('submit',async e=>{
   const nombre=form.elements.nombre.value.trim(),em=normEmail(emailIn.value);
   if(!nombre){err.textContent='Escribe tu nombre para que sepamos quién confirma.';form.elements.nombre.focus();return;}
   if(!validEmail(em)){emailErr.textContent='Revisa el correo: debe tener el formato nombre@dominio.com.';emailIn.focus();return;}
+  if(form.elements.asistencia.value==='Sí'){
+    const veg=document.getElementById('f-d-vegano').checked;
+    if(!veg&&!form.elements.menu.value){err.textContent='Elige tu menú: carne o pescado.';return;}
+    if(form.elements.acompanantes.value==='1'&&!form.elements.menu_acompanante.value){err.textContent='Elige el menú de tu acompañante.';return;}
+  }
   const data=new URLSearchParams(new FormData(form));data.set('email',em);
-  if(form.elements.asistencia.value==='No'){['acompanantes','nombres_acompanantes','autobus','alergias','cancion'].forEach(k=>data.set(k,''));}
+  data.set('dieta',[...form.querySelectorAll('input[name="dieta"]:checked')].map(x=>x.value).join(', '));
+  if(document.getElementById('f-d-vegano').checked)data.set('menu','Vegano');
+  if(form.elements.acompanantes.value!=='1')data.set('menu_acompanante','');
+  if(form.elements.asistencia.value==='No'){['acompanantes','nombres_acompanantes','menu','menu_acompanante','autobus','alergias','dieta','cancion'].forEach(k=>data.set(k,''));}
   sendBtn.disabled=true;sendBtn.textContent='Enviando…';
   let dup=false;
   try{
@@ -815,6 +886,20 @@ form.addEventListener('submit',async e=>{
   finally{sendBtn.textContent=sendLabel();sendBtn.disabled=false;if(dup){showDuplicate();emailIn.focus();}}
 });
 
+
+
+/* ===== Temperatura por momento (medias de agosto en Guadalajara: máx. 31-32 °C, mín. 15-18 °C) ===== */
+{const M=[
+  {k:'Ceremonia',w:'17:00 · Iglesia',t:'31 °C',v:31,c:'#C9763F',n:'El calor aprieta a la salida de la iglesia: el sol pega de frente y no hay sombra. Ropa ligera, abanico y gafas de sol.'},
+  {k:'Cóctel',w:'18:00 – 20:30 · Jardines',t:'30 → 27 °C',v:28.5,c:'#D8955A',n:'Los jardines dan sombra y se está a gusto.'},
+  {k:'Cena',w:'20:30 – 23:00 · Claustro',t:'26 → 22 °C',v:24,c:'#9C83BE',n:'El claustro de piedra se mantiene fresquito.'},
+  {k:'Fiesta',w:'23:00 – 03:00 · Antigua capilla',t:'21 → 17 °C',v:19,c:'#4B4A6E',n:'Ya es de noche y se está bien. Trae algo de abrigo para la vuelta.'}];
+ const box=document.getElementById('tempChips'),fill=document.getElementById('thFill'),bulb=document.getElementById('thBulb');
+ const show=i=>{const m=M[i];[...box.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+   const h=Math.round((m.v-12)/22*74);fill.setAttribute('y',78-h);fill.setAttribute('height',h);fill.setAttribute('fill',m.c);bulb.setAttribute('fill',m.c);
+   document.getElementById('tempWhen').textContent=m.w;document.getElementById('tempVal').textContent=m.t;document.getElementById('tempNote').textContent=m.n;};
+ M.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=m.k;b.addEventListener('click',()=>show(i));box.appendChild(b);});
+ show(0);}
 
 /* ===== Easter eggs ===== */
 const CONFIG_EGGS={
