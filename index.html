@@ -445,10 +445,16 @@ function dodge(e){
   taunt.textContent=taunts[Math.min(tries,taunts.length-1)];
   if(tries>=noTexts.length){no.style.opacity='0';no.style.transform='scale(.2)';setTimeout(()=>{no.hidden=true;taunt.textContent='Pues nada, solo queda una opción.';},300);}
 }
+/* Táctil: touchstart con preventDefault anula el clic sintético, que tras el redimensionado caía sobre «Sí» */
+no.addEventListener('touchstart',e=>{e.preventDefault();dodge();},{passive:false});
 no.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')dodge();});
-no.addEventListener('pointerdown',dodge);
 no.addEventListener('click',dodge);
-si.addEventListener('click',()=>{unlocked=true;store.set('boda_unlocked','1');burst();setTimeout(()=>go(1),reduce?0:450);});
+/* «Sí» solo cuenta si el toque empezó sobre él y no justo después de esquivar el «No» */
+let siDown=false;
+si.addEventListener('pointerdown',()=>{siDown=Date.now()-lastTry>500;});
+si.addEventListener('click',e=>{
+  if(e.detail!==0&&(!siDown||Date.now()-lastTry<500)){siDown=false;return;}
+  siDown=false;unlocked=true;store.set('boda_unlocked','1');burst();setTimeout(()=>go(1),reduce?0:450);});
 if(store.get('boda_unlocked')==='1'){unlocked=true;}
 
 /* ===== Pétalos ===== */
