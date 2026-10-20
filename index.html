@@ -60,7 +60,7 @@ button,input,select,textarea{font:inherit;color:inherit;}
 .card{position:relative;width:100%;max-width:520px;margin:auto 0;padding:clamp(34px,7vw,52px) clamp(22px,6vw,46px) clamp(30px,6vw,44px);text-align:center;overflow-wrap:anywhere;}
 .card{isolation:isolate;}
 /* Sombra plana: copia del contorno del papel en negro translúcido, desplazada. Sin desenfoque, sin coste en las transiciones */
-.card>.card-shadow{position:absolute;inset:0;background:rgba(0,0,0,.22);clip-path:var(--deckle);transform:translate(7px,-8px);z-index:-1!important;pointer-events:none;}
+.card>.card-shadow{position:absolute;inset:0;background:rgba(40,30,50,.12);clip-path:var(--deckle);transform:translate(7px,-8px);z-index:-1!important;pointer-events:none;}
 .card::before{content:"";position:absolute;inset:0;background:var(--paper);clip-path:var(--deckle);z-index:0;}
 .card::after{content:"";position:absolute;inset:12px;border:1px solid var(--line);pointer-events:none;z-index:0;}
 .card>*{position:relative;z-index:1;}
@@ -133,6 +133,8 @@ p{margin:0 0 14px;}
 .mono{font-style:normal;line-height:1;display:block;white-space:nowrap;transform:translate(var(--ix,0px),var(--iy,0px));}
 .s-help{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);margin:0;}
 .taunt{min-height:1.6em;font-family:var(--f-display);font-style:italic;font-size:1.1rem;color:var(--gold);margin:12px 0 0;}
+.taunt.pop{animation:tauntPop .6s cubic-bezier(.3,1.6,.5,1);}
+@keyframes tauntPop{0%{transform:translateY(8px) scale(.85);opacity:0;color:var(--wax)}55%{transform:translateY(-2px) scale(1.08);opacity:1;color:var(--wax)}100%{transform:none;opacity:1}}
 
 /* Fecha */
 .date-big{font-family:var(--f-display);font-size:clamp(2.8rem,12vw,4.6rem);line-height:1;font-weight:400;}
@@ -222,6 +224,27 @@ textarea{resize:vertical;min-height:70px;}
 .menu-panel button i{width:12px;height:12px;border-radius:50%;flex:none;border:1px solid rgba(0,0,0,.12);}
 .menu-panel button[aria-current="true"]{color:var(--wax);}
 
+
+/* ===== Easter eggs ===== */
+.egg-night{font-family:var(--f-display);font-style:italic;color:var(--gold);font-size:1.05rem;margin:8px 0 0;max-width:30ch;}
+.countdown,.countdown-alt{cursor:pointer;border-radius:6px;}
+.countdown-alt{display:flex;flex-direction:column;align-items:center;gap:2px;margin:24px auto 20px;}
+.countdown-alt[hidden]{display:none!important;}
+.countdown-alt b{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,10vw,3.2rem);line-height:1;color:var(--wax);}
+.countdown-alt small{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);}
+.white-dot{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);padding:0;cursor:pointer;background:#fff linear-gradient(135deg,transparent 46%,var(--wax) 46%,var(--wax) 54%,transparent 54%);}
+.egg-note{font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--wax);margin:6px 0 0;min-height:0;}
+.egg-note:empty{display:none;}
+.eggs-wrap{margin-top:30px;display:flex;flex-direction:column;align-items:center;gap:14px;}
+.eggs-btn{font-size:.7rem;border-style:dashed;}
+.eggs{text-align:left;margin:0;padding:0 0 0 1.4em;display:flex;flex-direction:column;gap:8px;font-size:.9rem;max-width:400px;}
+.eggs b{font-weight:400;color:var(--wax);}
+/* Centrado en la franja del cielo, sin tapar la carta ni el botón del menú; aparece y desaparece en 3 s */
+.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 14px);transform:translateX(-50%);width:max-content;max-width:calc(100vw - 2 * (max(16px,env(safe-area-inset-right,0px)) + 56px));
+  z-index:30;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:9px 16px;font-family:var(--f-display);font-style:italic;font-size:1rem;line-height:1.3;text-align:center;
+  box-shadow:0 8px 20px -10px rgba(0,0,0,.45);pointer-events:none;animation:toastFade 3s ease both;}
+@keyframes toastFade{0%{opacity:0}15%{opacity:1}82%{opacity:1}100%{opacity:0}}
+.orb{cursor:pointer;}
 @media (max-width:420px){
   .timeline li{grid-template-columns:54px 1fr;gap:10px;}
   .timeline time{font-size:1.2rem;}
@@ -245,7 +268,7 @@ textarea{resize:vertical;min-height:70px;}
   .card>.legal-gap{margin-top:auto;}
   .slide:not([data-step="0"]){padding-bottom:0;}
   /* Papel con margen lateral de 10 px para que la sombra (arriba y a la derecha) se vea en ambos bordes */
-  .card>.card-shadow{top:var(--band);left:10px;right:10px;transform:translate(7px,-8px);background:rgba(0,0,0,.3);}
+  .card>.card-shadow{top:var(--band);left:10px;right:10px;transform:translate(7px,-8px);background:rgba(40,30,50,.16);}
   .card::before{top:var(--band);bottom:0;left:10px;right:10px;}
   .card::after{top:calc(var(--band) + 12px);left:22px;right:22px;}
   .qcard{animation:zoomIn .55s cubic-bezier(.2,.7,.3,1) both;display:flex;flex-direction:column;justify-content:center;}
@@ -261,7 +284,7 @@ textarea{resize:vertical;min-height:70px;}
 @keyframes zoomIn{from{transform:scale(.82);opacity:0}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){
   .slide,.knob,.menu,.menu-panel,.sky,.orb,.stars,.flap,.letter,.half{transition:none!important;}
-  .seal::after,.qcard,.s-hint,.knob.shake{animation:none!important;}
+  .seal::after,.qcard,.s-hint,.knob.shake,.taunt.pop{animation:none!important;}
   .scene .env{transition:none!important;}
 }
 </style>
@@ -270,13 +293,14 @@ textarea{resize:vertical;min-height:70px;}
 </head>
 <body>
 <button class="menu-btn" id="menuBtn" type="button" aria-label="Índice de la invitación" aria-expanded="false" aria-controls="menu" hidden><span></span><span></span><span></span></button>
-<div class="menu" id="menu" hidden><nav class="menu-panel" aria-label="Índice"><p>Ir a…</p><ol id="menuList"></ol><p class="legal">Diseño registrado. Cualquier copia para otra boda se resolverá en la pista de baile. <b>· v14 · 20/10/2026</b></p></nav></div>
+<div class="menu" id="menu" hidden><nav class="menu-panel" aria-label="Índice"><p>Ir a…</p><ol id="menuList"></ol><p class="legal">Diseño registrado. Cualquier copia para otra boda se resolverá en la pista de baile. <b>· v21 · 20/10/2026</b></p></nav></div>
 
 <div class="sky" id="sky" aria-hidden="true"><div class="stars" id="stars"></div><div class="orb sun" id="sun"></div><div class="orb moon" id="moon"></div></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <g id="sgA"><path d="M0 0 C7 -5.5 19 -5.5 28 0 C19 5.5 7 5.5 0 0Z" fill="#A4B49C"/><path d="M1 0 L25 0" stroke="#7E9278" stroke-width=".7"/></g><g id="sgB"><path d="M0 0 C7 -5.5 19 -5.5 28 0 C19 5.5 7 5.5 0 0Z" fill="#8FA28A"/><path d="M1 0 L25 0" stroke="#7E9278" stroke-width=".7"/></g>
-  <symbol id="sprig" viewBox="0 0 80 122"><path d="M40 118 Q43.0 68.0 46 18" stroke="#7E9278" stroke-width="1.4" fill="none" stroke-linecap="round"/><g transform="translate(41.1 100.0) rotate(-150) scale(1.00)"><use href="#sgA"/></g><g transform="translate(41.1 100.0) rotate(-30) scale(1.00)"><use href="#sgB"/></g><g transform="translate(42.2 81.0) rotate(-142) scale(0.85)"><use href="#sgB"/></g><g transform="translate(42.2 81.0) rotate(-38) scale(0.85)"><use href="#sgA"/></g><g transform="translate(43.4 62.0) rotate(-134) scale(0.70)"><use href="#sgA"/></g><g transform="translate(43.4 62.0) rotate(-46) scale(0.70)"><use href="#sgB"/></g><g transform="translate(44.5 43.0) rotate(-126) scale(0.55)"><use href="#sgB"/></g><g transform="translate(44.5 43.0) rotate(-54) scale(0.55)"><use href="#sgA"/></g><g transform="translate(45.6 24.0) rotate(-118) scale(0.40)"><use href="#sgA"/></g><g transform="translate(45.6 24.0) rotate(-62) scale(0.40)"><use href="#sgB"/></g><g transform="translate(46.0 18.0) rotate(-90) scale(0.55)"><use href="#sgA"/></g></symbol>
+  <symbol id="sprig" viewBox="0 0 80 122"><path d="M40 118 L41 70" stroke="#7E9278" stroke-width="1.4" fill="none" stroke-linecap="round"/><g transform="translate(40.5 112.0) rotate(-155) scale(1.05)"><use href="#sgA"/></g><g transform="translate(40.5 112.0) rotate(-25) scale(1.05)"><use href="#sgB"/></g><g transform="translate(40.5 98.0) rotate(-145) scale(0.87)"><use href="#sgB"/></g><g transform="translate(40.5 98.0) rotate(-35) scale(0.87)"><use href="#sgA"/></g><g transform="translate(40.5 84.0) rotate(-135) scale(0.69)"><use href="#sgA"/></g><g transform="translate(40.5 84.0) rotate(-45) scale(0.69)"><use href="#sgB"/></g><path d="M41 72 Q42.5 43.0 44 14" stroke="#7E9278" stroke-width="1.4" fill="none" stroke-linecap="round"/><ellipse cx="36.5" cy="72.0" rx="3.2" ry="5.5" fill="#8576C2" transform="rotate(-38 36.5 72.0)"/><ellipse cx="45.5" cy="71.0" rx="3.2" ry="5.5" fill="#6F62AE" transform="rotate(38 45.5 71.0)"/><circle cx="41.0" cy="74.5" r="1.9" fill="#5B4F8F"/><ellipse cx="37.3" cy="63.7" rx="3.0" ry="5.1" fill="#6F62AE" transform="rotate(-38 37.3 63.7)"/><ellipse cx="45.6" cy="62.7" rx="3.0" ry="5.1" fill="#8576C2" transform="rotate(38 45.6 62.7)"/><circle cx="41.4" cy="66.0" r="1.7" fill="#5B4F8F"/><ellipse cx="38.1" cy="55.4" rx="2.7" ry="4.6" fill="#8576C2" transform="rotate(-38 38.1 55.4)"/><ellipse cx="45.6" cy="54.4" rx="2.7" ry="4.6" fill="#6F62AE" transform="rotate(38 45.6 54.4)"/><circle cx="41.9" cy="57.5" r="1.6" fill="#5B4F8F"/><ellipse cx="38.9" cy="47.1" rx="2.5" ry="4.2" fill="#6F62AE" transform="rotate(-38 38.9 47.1)"/><ellipse cx="45.7" cy="46.1" rx="2.5" ry="4.2" fill="#8576C2" transform="rotate(38 45.7 46.1)"/><circle cx="42.3" cy="49.0" r="1.4" fill="#5B4F8F"/><ellipse cx="39.7" cy="38.9" rx="2.2" ry="3.7" fill="#8576C2" transform="rotate(-38 39.7 38.9)"/><ellipse cx="45.8" cy="37.9" rx="2.2" ry="3.7" fill="#6F62AE" transform="rotate(38 45.8 37.9)"/><circle cx="42.7" cy="40.6" r="1.3" fill="#5B4F8F"/><ellipse cx="40.4" cy="30.6" rx="2.0" ry="3.3" fill="#6F62AE" transform="rotate(-38 40.4 30.6)"/><ellipse cx="45.8" cy="29.6" rx="2.0" ry="3.3" fill="#8576C2" transform="rotate(38 45.8 29.6)"/><circle cx="43.1" cy="32.1" r="1.1" fill="#5B4F8F"/><ellipse cx="41.2" cy="22.3" rx="1.7" ry="2.9" fill="#8576C2" transform="rotate(-38 41.2 22.3)"/><ellipse cx="45.9" cy="21.3" rx="1.7" ry="2.9" fill="#6F62AE" transform="rotate(38 45.9 21.3)"/><circle cx="43.6" cy="23.6" r="1.0" fill="#5B4F8F"/><ellipse cx="42.0" cy="14.0" rx="1.4" ry="2.4" fill="#6F62AE" transform="rotate(-38 42.0 14.0)"/><ellipse cx="46.0" cy="13.0" rx="1.4" ry="2.4" fill="#8576C2" transform="rotate(38 46.0 13.0)"/><circle cx="44.0" cy="15.1" r="0.8" fill="#5B4F8F"/><ellipse cx="44" cy="11" rx="1.8" ry="3.2" fill="#9C8FD0"/></symbol>
 </svg>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 <canvas id="petals" aria-hidden="true"></canvas>
 
 <main class="deck" id="deck">
@@ -294,6 +318,7 @@ textarea{resize:vertical;min-height:70px;}
         <button class="seal" id="seal" type="button" aria-label="Romper el sello y abrir la invitación"><span class="half l"><i class="mono">S&amp;S</i></span><span class="half r"><i class="mono">S&amp;S</i></span></button>
       </div>
       <p class="hint">Rompe el sello para abrir</p>
+      <p class="egg-night" id="eggNight" hidden>¿Abriendo invitaciones a estas horas? Ya vas entrenando para la fiesta.</p>
     </div>
     <div class="card qcard" id="qcard" hidden>
       <p class="eyebrow">21 · 08 · 2027</p>
@@ -322,12 +347,13 @@ textarea{resize:vertical;min-height:70px;}
       <p class="muted" style="letter-spacing:.3em">2027</p>
       <hr class="rule">
       <p class="lead">Monasterio de San Bartolomé de Lupiana<br>Lupiana, Guadalajara</p>
-      <div class="countdown" aria-label="Cuenta atrás">
+      <div class="countdown" id="countdown" role="button" tabindex="0" aria-label="Cuenta atrás. Tócala para otra versión">
         <div><b id="cdD">0</b><small>Días</small></div>
         <div><b id="cdH">0</b><small>Horas</small></div>
         <div><b id="cdM">0</b><small>Min</small></div>
         <div><b id="cdS">0</b><small>Seg</small></div>
       </div>
+      <div class="countdown-alt" id="countdownAlt" role="button" tabindex="0" hidden><b>4</b><small>horas de barra libre que nos esperan</small></div>
       <div class="links">
         <a class="btn" id="calLink" target="_blank" rel="noopener">Añadir al calendario</a>
       </div>
@@ -389,7 +415,7 @@ textarea{resize:vertical;min-height:70px;}
       <p class="eyebrow">Etiqueta</p>
       <h2>Dress code</h2>
       <p class="lead">Formal de verano.</p>
-      <div class="palette" aria-hidden="true"><i style="background:#C9A96E"></i><i style="background:#A3B18A"></i><i style="background:#D8B4A0"></i><i style="background:#8FA6B8"></i></div>
+      <div class="palette"><i style="background:#C9A96E"></i><i style="background:#A3B18A"></i><i style="background:#D8B4A0"></i><i style="background:#8FA6B8"></i><button type="button" class="white-dot" id="whiteDot" aria-label="Blanco"></button></div>
       <p class="muted">Tonos tierra, salvia y pastel. Reservamos el blanco y el marfil para la novia.</p>
       <div class="info" style="margin-top:18px">
         <div><h3>El suelo</h3><p>Claustro de piedra y césped en los jardines. Mejor tacón ancho o calzado de repuesto.</p></div>
@@ -406,7 +432,7 @@ textarea{resize:vertical;min-height:70px;}
       <h2>Regalo</h2>
       <p class="lead">Lo más importante es el dinero, pero vuestra presencia también la valoramos.</p>
       <div class="copybox">
-        <code id="iban">ES00 0000 0000 0000 0000 0000</code>
+        <code id="iban">ES10 0182 5322 2102 0479 5724</code>
         <button class="btn" type="button" id="copyIban">Copiar</button>
       </div>
       <p class="muted" id="copyMsg" aria-live="polite">Titulares: Silvia Rodríguez y Salvador Gaitán</p>
@@ -472,10 +498,12 @@ textarea{resize:vertical;min-height:70px;}
         <div class="if-yes">
           <label for="f-alerg">Alergias o dieta especial</label>
           <input type="text" id="f-alerg" name="alergias" placeholder="Ninguna">
+          <p class="egg-note" id="alergNote" aria-live="polite"></p>
         </div>
         <div class="if-yes">
           <label for="f-cancion">Una canción que no pueda faltar</label>
           <input type="text" id="f-cancion" name="cancion">
+          <p class="egg-note" id="songNote" aria-live="polite"></p>
         </div>
         <div>
           <label for="f-msg">Mensaje para los novios</label>
@@ -490,6 +518,23 @@ textarea{resize:vertical;min-height:70px;}
         <p id="okText" class="muted"></p>
         <button class="btn" type="button" id="editAgain">Confirmar otra persona</button>
       </div>
+
+      <div class="eggs-wrap">
+        <button class="btn eggs-btn" type="button" id="eggsBtn" aria-expanded="false" aria-controls="eggsList">Revelar easter eggs</button>
+        <ol class="eggs" id="eggsList" hidden>
+          <li><b>Visita de madrugada.</b> Abre la invitación entre las 00:00 y las 6:00.</li>
+          <li><b>Pestaña abandonada.</b> Cambia de pestaña o de app y mira el título.</li>
+          <li><b>El sol de agosto.</b> Toca el sol en los primeros pasos.</li>
+          <li><b>La luna que avisa.</b> Toca la luna en los pasos de noche.</li>
+          <li><b>Otra cuenta atrás.</b> Toca los números de la cuenta atrás en «Fecha y lugar».</li>
+          <li><b>Blanco reservado.</b> Toca el círculo blanco tachado del dress code.</li>
+          <li><b>IBAN agradecido.</b> Copia la cuenta del regalo… y vuelve a copiarla.</li>
+          <li><b>Canciones vetadas.</b> Escribe «Paquito el chocolatero» en la canción.</li>
+          <li><b>Alergia sospechosa.</b> Escribe «jamón» en alergias.</li>
+          <li><b>Con mucha pena.</b> Marca «No podré ir» y mira el botón de envío.</li>
+          <li><b>Modo fiesta.</b> Toca 7 veces seguidas la versión del pie de página.</li>
+        </ol>
+      </div>
     </div>
   </section>
 </main>
@@ -502,7 +547,7 @@ textarea{resize:vertical;min-height:70px;}
 
 <script>
 /* ===== CONFIGURACIÓN: edita aquí ===== */
-const VERSION = "v14 · 20/10/2026";
+const VERSION = "v21 · 20/10/2026";
 const CONFIG = {
   // URL de la implementación de Google Apps Script (termina en /exec). Vacío = modo vista previa.
   scriptURL: "",
@@ -587,13 +632,15 @@ document.addEventListener('keydown',e=>{
 
 /* ===== Interruptor Sí / No (deslizar el lacre) ===== */
 const slider=document.getElementById('slider'),knob=document.getElementById('knob'),sNo=document.getElementById('sNo'),taunt=document.getElementById('taunt');
-const taunts=["","¿Seguro? Prueba otra vez.","Piénsalo bien.","Hay jamón ibérico al corte.","Y 4 horas de barra libre.","En un monasterio, nada menos.","El No ya casi ni se ve."];
+/* El «No» pierde un 18 % de opacidad por intento: en el 6.º ya no se ve y sale el mensaje final */
+const taunts=["","¿Seguro? Prueba otra vez.","Piénsalo bien.","Hay jamón ibérico al corte.","Y 4 horas de barra libre.","El No ya casi ni se ve.","¿Ves como sí tienes ganas…?"];
 let tries=0,answered=false,dragging=false,startX=0,startDx=0,dx=0;
 const range=()=>(slider.clientWidth-knob.offsetWidth)/2-4;
 function setDx(v,spring){knob.classList.toggle('spring',!!spring);dx=v;knob.style.setProperty('--dx',v+'px');}
 function sayNo(){
   tries++;slider.classList.add('moved');
   taunt.textContent=taunts[Math.min(tries,taunts.length-1)];
+  taunt.classList.remove('pop');void taunt.offsetWidth;taunt.classList.add('pop');
   sNo.style.opacity=Math.max(0,1-tries*.18);sNo.style.transform='translateY(-50%) scale('+Math.max(.5,1-tries*.1)+')';
   knob.classList.remove('shake');void knob.offsetWidth;knob.classList.add('shake');
   setDx(0,true);knob.setAttribute('aria-valuetext','Sin responder');
@@ -663,7 +710,7 @@ addEventListener('resize',size);size();
 function burst(el){
   if(reduce)return;
   const r=el.getBoundingClientRect(),ox=(r.left+r.width/2)*PR,oy=(r.top+r.height/2)*PR;
-  const cols=['#A4B49C','#8FA28A','#A8843F','#E8D9B5'];
+  const cols=['#8576C2','#A4B49C','#6F62AE','#E8D9B5'];
   for(let i=0;i<(LITE?36:70);i++){const a=Math.random()*Math.PI*2,v=(3+Math.random()*7)*PR;
     parts.push({x:ox,y:oy,vx:Math.cos(a)*v,vy:Math.sin(a)*v-4*PR,r:(4+Math.random()*5)*PR,rot:Math.random()*6,vr:(Math.random()-.5)*.3,c:cols[i%4],life:1});}
   if(!raf)loop();
@@ -688,10 +735,12 @@ tick();setInterval(tick,1000);
 const c=CONFIG.calendar;
 document.getElementById('calLink').href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(c.title)+'&dates='+c.start+'/'+c.end+'&location='+encodeURIComponent(c.location)+'&details='+encodeURIComponent(c.details);
 
-/* ===== Copiar IBAN ===== */
+/* ===== Copiar IBAN (egg 7) ===== */
+let copies=0;
 document.getElementById('copyIban').addEventListener('click',()=>{
   const t=document.getElementById('iban').textContent.replace(/\s/g,''),msg=document.getElementById('copyMsg');
-  const ok=()=>msg.textContent='Copiado. ¡Gracias!';
+  copies++;
+  const ok=()=>{msg.textContent=copies>=3?'¿Tres veces? Nos encanta tu entusiasmo.':'Copiado. Japón os lo agradece.';};
   const fallback=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('iban'));const s=getSelection();s.removeAllRanges();s.addRange(r);msg.textContent='Seleccionado: mantén pulsado para copiar.';};
   try{navigator.clipboard.writeText(t).then(ok,fallback);}catch(e){fallback();}
 });
@@ -700,10 +749,13 @@ document.getElementById('copyIban').addEventListener('click',()=>{
 const form=document.getElementById('rsvp'),err=document.getElementById('formErr'),okBox=document.getElementById('formOk');
 const wrapNombres=document.getElementById('wrap-nombres');
 function syncForm(){
-  const yes=form.asistencia.value==='Sí';
+  const yes=form.elements.asistencia.value==='Sí';
   form.querySelectorAll('.if-yes').forEach(el=>{if(el!==wrapNombres)el.hidden=!yes;});
-  wrapNombres.hidden=!yes||form.acompanantes.value!=='1';
+  wrapNombres.hidden=!yes||form.elements.acompanantes.value!=='1';
+  const sb=document.getElementById('sendBtn');if(!sb.disabled)sb.textContent=sendLabel();
 }
+/* Egg 10: botón de envío con pena */
+function sendLabel(){return form.elements.asistencia.value==='No'?'Enviar (con mucha pena)':'Enviar confirmación';}
 form.addEventListener('change',syncForm);syncForm();
 
 const emailIn=document.getElementById('f-email'),emailErr=document.getElementById('emailErr'),sendBtn=document.getElementById('sendBtn');
@@ -721,7 +773,7 @@ function showDuplicate(){
   emailErr.textContent='Ya tenemos una confirmación con este correo. Si necesitas cambiar algo, escríbenos directamente.';
   sendBtn.disabled=true;
 }
-document.getElementById('editAgain').onclick=()=>{form.reset();syncForm();emailErr.textContent='';sendBtn.disabled=false;form.hidden=false;okBox.hidden=true;form.nombre.focus();};
+document.getElementById('editAgain').onclick=()=>{form.reset();syncForm();emailErr.textContent='';sendBtn.disabled=false;form.hidden=false;okBox.hidden=true;form.elements.nombre.focus();};
 
 /* Consulta al servidor si el correo ya existe: {status:'exists'|'new'} */
 async function checkEmail(em){
@@ -739,27 +791,76 @@ emailIn.addEventListener('blur',async()=>{
 
 form.addEventListener('submit',async e=>{
   e.preventDefault();err.textContent='';emailErr.textContent='';
-  const nombre=form.nombre.value.trim(),em=normEmail(emailIn.value);
-  if(!nombre){err.textContent='Escribe tu nombre para que sepamos quién confirma.';form.nombre.focus();return;}
+  const nombre=form.elements.nombre.value.trim(),em=normEmail(emailIn.value);
+  if(!nombre){err.textContent='Escribe tu nombre para que sepamos quién confirma.';form.elements.nombre.focus();return;}
   if(!validEmail(em)){emailErr.textContent='Revisa el correo: debe tener el formato nombre@dominio.com.';emailIn.focus();return;}
   const data=new URLSearchParams(new FormData(form));data.set('email',em);
-  if(form.asistencia.value==='No'){['acompanantes','nombres_acompanantes','autobus','alergias','cancion'].forEach(k=>data.set(k,''));}
+  if(form.elements.asistencia.value==='No'){['acompanantes','nombres_acompanantes','autobus','alergias','cancion'].forEach(k=>data.set(k,''));}
   sendBtn.disabled=true;sendBtn.textContent='Enviando…';
   let dup=false;
   try{
     if(!CONFIG.scriptURL){
       await new Promise(r=>setTimeout(r,600));
-      if(localSent().includes(em))dup=true;else{markLocal(em);showOk(nombre,form.asistencia.value==='Sí',true);}
+      if(localSent().includes(em))dup=true;else{markLocal(em);showOk(nombre,form.elements.asistencia.value==='Sí',true);}
     }else{
       const r=await fetch(CONFIG.scriptURL,{method:'POST',body:data});
       const j=await r.json();
       if(j.status==='duplicate')dup=true;
-      else if(j.status==='ok'){markLocal(em);showOk(nombre,form.asistencia.value==='Sí',false);}
+      else if(j.status==='ok'){markLocal(em);showOk(nombre,form.elements.asistencia.value==='Sí',false);}
       else throw new Error(j.message||'error');
     }
   }catch(x){err.textContent='No se ha podido enviar. Revisa tu conexión e inténtalo de nuevo.';}
-  finally{sendBtn.textContent='Enviar confirmación';sendBtn.disabled=false;if(dup){showDuplicate();emailIn.focus();}}
+  finally{sendBtn.textContent=sendLabel();sendBtn.disabled=false;if(dup){showDuplicate();emailIn.focus();}}
 });
+
+
+/* ===== Easter eggs ===== */
+const CONFIG_EGGS={
+  vetadas:['paquito el chocolatero','despacito','la macarena','aserejé','asereje','el venao','follow the leader'],
+  aprobadas:['september','dont stop me now',"don't stop me now",'mr brightside','mr. brightside','vivir mi vida','la bamba']
+};
+const toastEl=document.getElementById('toast');let toastT=0;
+function toast(t){toastEl.textContent=t;toastEl.hidden=false;toastEl.style.animation='none';void toastEl.offsetWidth;toastEl.style.animation='';clearTimeout(toastT);toastT=setTimeout(()=>toastEl.hidden=true,3000);}
+/* 1 · Madrugada */
+{const h=new Date().getHours();if(h<6)document.getElementById('eggNight').hidden=false;}
+/* 2 · Pestaña abandonada */
+{const t0=document.title;document.addEventListener('visibilitychange',()=>{document.title=document.hidden?'¡Vuelve, que hay jamón!':t0;});}
+/* 3 y 4 · Sol y luna: están detrás de las tarjetas, así que se detecta el toque por coordenadas */
+document.getElementById('deck').addEventListener('click',e=>{
+  if(e.target.closest('button,a,input,textarea,label,summary,.card>*:not(.card-shadow)'))return;
+  for(const [el,msg] of [[sunEl,'En agosto en la Alcarria: abanico, agua y sombra.'],[moonEl,'Recuerda: el autobús sale a las 3:00. La luna no espera.']]){
+    if(!el.classList.contains('on'))continue;const r=el.getBoundingClientRect(),p=14;
+    if(e.clientX>r.left-p&&e.clientX<r.right+p&&e.clientY>r.top-p&&e.clientY<r.bottom+p){toast(msg);return;}
+  }
+});
+/* 5 · Cuenta atrás alternativa */
+{const a=document.getElementById('countdown'),b=document.getElementById('countdownAlt');
+ const flip=()=>{const alt=b.hidden;a.hidden=alt;b.hidden=!alt;};
+ [a,b].forEach(x=>{x.addEventListener('click',flip);x.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip();}});});}
+/* 6 · Blanco reservado */
+document.getElementById('whiteDot').addEventListener('click',()=>toast('El blanco es de la novia. Sin excepciones.'));
+/* 8 · Canciones */
+{const f=document.getElementById('f-cancion'),n=document.getElementById('songNote');
+ const norm=v=>v.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9' .]/g,'').trim();
+ const check=()=>{const v=norm(f.value);if(!v){n.textContent='';return;}
+  if(CONFIG_EGGS.vetadas.some(x=>v.includes(norm(x))))n.textContent='Vetada según la cláusula de propiedad intelectual.';
+  else if(CONFIG_EGGS.aprobadas.some(x=>v.includes(norm(x))))n.textContent='Aprobada por unanimidad.';
+  else n.textContent='';};
+ f.addEventListener('input',check);}
+/* 9 · Alergia sospechosa */
+{const f=document.getElementById('f-alerg'),n=document.getElementById('alergNote');
+ f.addEventListener('input',()=>{n.textContent=/jam[oó]n/i.test(f.value)?'¿Alergia al jamón? Revisaremos tu invitación.':'';});}
+/* 11 · Modo fiesta: 7 toques seguidos en la versión del pie */
+{let taps=0,tt=0,party=false;
+ document.addEventListener('click',e=>{const v=e.target.closest('.legal b');if(!v||party)return;
+  taps++;clearTimeout(tt);tt=setTimeout(()=>taps=0,1500);
+  if(taps>=7){taps=0;party=true;toast('¡Modo fiesta activado!');let i=0;const cols=SKY.slice(1).map(k=>k.c);
+   const iv=setInterval(()=>{skyEl.style.backgroundColor=cols[i++%cols.length];if(i%3===0)burst(v);},reduce?600:260);
+   setTimeout(()=>{clearInterval(iv);paintSky(current);party=false;},4200);}
+ });}
+/* Lista de easter eggs */
+{const b=document.getElementById('eggsBtn'),l=document.getElementById('eggsList');
+ b.addEventListener('click',()=>{const open=l.hidden;l.hidden=!open;b.setAttribute('aria-expanded',open);b.textContent=open?'Ocultar easter eggs':'Revelar easter eggs';});}
 
 go(0);
 </script>
